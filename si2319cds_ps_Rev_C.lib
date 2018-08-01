@@ -1,0 +1,38 @@
+********************************
+* Copyright:                   *
+* Vishay Intertechnology, Inc. *
+********************************
+*Sep 28, 2015
+*ECN S15-2269, Rev. C
+*File Name: Si2319CDS_PS.txt and Si2319CDS_PS.lib
+*This document is intended as a SPICE modeling guideline and does not
+*constitute a commercial product data sheet. Designers should refer to the
+*appropriate data sheet of the same number for guaranteed specification
+*limits.
+.SUBCKT Si2319CDS D G S 
+M1 3 GX S S PMOS W= 1485600u L= 0.25u 
+M2 S GX S D NMOS W= 1485600u L= 3.675e-07 
+R1 D 3 4.348e-02 TC=6.322e-03 7.896e-06 
+CGS GX S 3.097e-10 
+CGD GX D 1.392e-11 
+RG G GY 4.3 
+RTCV 100 S 1e6 TC=-2.823e-04 -3.875e-06 
+ETCV GY GX 100 200 1 
+ITCV S 100 1u 
+VTCV 200 S 1 
+DBD D S DBD 
+**************************************************************** 
+.MODEL PMOS PMOS ( LEVEL = 3 TOX = 5e-8 
++ RS = 1.099e-02 KP = 2.826e-06 NSUB = 5.105e+16 
++ KAPPA = 2.015e-02 ETA = 2.212e-04 NFS = 1.555e+12 
++ LD = 0 IS = 0 TPG = -1) 
+*************************************************************** 
+.MODEL NMOS NMOS ( LEVEL = 3 TOX = 5e-8 
++NSUB = 1.790e+16 IS = 0 TPG = -1 ) 
+**************************************************************** 
+.MODEL DBD D ( 
++FC = 0.1 TT = 1.738e-08 T_MEASURED = 25 BV = 42 
++RS = 1.495e-02 N = 1.416e+00 IS = 5.772e-10 
++EG = 1.215e+00 XTI = 8.916e-01 TRS1 = 2.943e-03 
++CJO = 1.172e-10 VJ = 4.000e-01 M = 3.336e-01 ) 
+.ENDS 
